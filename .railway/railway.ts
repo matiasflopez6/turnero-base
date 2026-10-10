@@ -17,7 +17,7 @@ export default defineRailway(() => {
   const imagenes = bucket("imagenes", { region: "iad" });
 
   const app = service("turnero", {
-    source: github("ProfesIA-IA/turnero-clinicas", { branch: "main" }),
+    source: github("matiasflopez6/turnero-base", { branch: "main" }),
     build: "npm install --include=dev && npm run build",
     start: "npm start",
     healthcheck: "/health",
