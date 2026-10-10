@@ -5,7 +5,6 @@ import { es } from 'date-fns/locale';
 import { useParams } from 'react-router-dom';
 import { api } from '../api';
 import MiniCalendar from '../components/MiniCalendar';
-import PoweredBy from '../components/PoweredBy';
 import { ThemeToggle } from '../theme';
 import { formatTime, ymd } from '../lib/calendar';
 
@@ -290,7 +289,6 @@ function PublicShell({ children }) {
     <div className="flex min-h-full flex-col">
       <div className="min-h-0 flex-1">{children}</div>
       <ThemeToggle floating />
-      <PoweredBy />
     </div>
   );
 }

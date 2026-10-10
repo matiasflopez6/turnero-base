@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../auth';
 import { api } from '../api';
-import PoweredBy from '../components/PoweredBy';
 import { ThemeToggle } from '../theme';
 
 export default function LoginPage() {
@@ -110,7 +109,6 @@ export default function LoginPage() {
         </form>
       </div>
       <ThemeToggle floating />
-      <PoweredBy />
     </div>
   );
 }

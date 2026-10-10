@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../api';
-import PoweredBy from '../components/PoweredBy';
 import { ThemeToggle } from '../theme';
 
 export default function ResetPasswordPage() {
@@ -49,7 +48,6 @@ export default function ResetPasswordPage() {
         </form>
       </div>
       <ThemeToggle floating />
-      <PoweredBy />
     </div>
   );
 }

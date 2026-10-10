@@ -21,7 +21,6 @@ import { useAuth } from '../auth';
 import { useClinic } from '../clinic';
 import { can } from '../lib/permissions';
 import { ThemeToggle } from '../theme';
-import PoweredBy from './PoweredBy';
 import Sitemap from './Sitemap';
 
 const NAV = [
@@ -105,7 +104,6 @@ export default function Layout() {
       <main className="min-h-0 flex-1 overflow-hidden">
         <Outlet />
       </main>
-      <PoweredBy />
     </div>
   );
 }
