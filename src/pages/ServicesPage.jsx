@@ -47,7 +47,7 @@ export default function ServicesPage() {
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <h1 className="mr-auto text-2xl">Servicios</h1>
         <input
-          className="h-9 w-full min-w-0 rounded-full border border-[#dadce0] px-4 text-sm outline-none focus:border-[#1a73e8] sm:w-auto sm:min-w-[240px]"
+          className="h-9 w-full min-w-0 rounded-full border border-(color:--c-line) px-4 text-sm outline-none focus:border-(color:--c-accent) sm:w-auto sm:min-w-[240px]"
           placeholder="Buscar por nombre…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -60,7 +60,7 @@ export default function ServicesPage() {
       </div>
       <div className="grid gap-3">
         {rows.map((service) => (
-          <div key={service.id} className="flex flex-col gap-3 rounded-xl border border-[#dadce0] p-4 sm:flex-row sm:items-center sm:gap-4">
+          <div key={service.id} className="flex flex-col gap-3 rounded-xl border border-(color:--c-line) p-4 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex min-w-0 items-center gap-3">
               <EntityPhoto
                 kind="services"
@@ -71,7 +71,7 @@ export default function ServicesPage() {
               />
               <div className="min-w-0 flex-1">
                 <div className="font-medium">{service.name}</div>
-                <div className="truncate text-sm text-[#70757a]">
+                <div className="truncate text-sm text-(color:--c-muted)">
                   {service.duration_min} min
                   {service.price ? ` · $${Number(service.price).toLocaleString('es-AR')}` : ''} ·{' '}
                   {service.professionals?.map((p) => p.name).join(', ') || 'Sin profesionales'}
@@ -153,7 +153,7 @@ function ServiceForm({ form, professionals, onClose, onSave }) {
           }
         }}
       >
-        <div className="border-b border-[#dadce0] px-5 py-4 text-lg">{state.id ? 'Editar servicio' : 'Nuevo servicio'}</div>
+        <div className="border-b border-(color:--c-line) px-5 py-4 text-lg">{state.id ? 'Editar servicio' : 'Nuevo servicio'}</div>
         <div className="grid gap-3 px-5 py-4">
           {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
           <PhotoField kind="services" id={state.id} hasPhoto={Boolean(form.photo)} file={photo} onFile={setPhoto} />
@@ -177,7 +177,7 @@ function ServiceForm({ form, professionals, onClose, onSave }) {
               {professionals.map((pro) => {
                 const checked = state.professionalIds.includes(pro.id);
                 return (
-                  <label key={pro.id} className={`cursor-pointer rounded-full border px-3 py-1 text-sm ${checked ? 'border-[#1a73e8] bg-[#e8f0fe] text-[#1a73e8]' : 'border-[#dadce0]'}`}>
+                  <label key={pro.id} className={`cursor-pointer rounded-full border px-3 py-1 text-sm ${checked ? 'border-(color:--c-accent) bg-(color:--c-accent-tint) text-(color:--c-accent)' : 'border-(color:--c-line)'}`}>
                     <input
                       type="checkbox"
                       className="hidden"
@@ -199,7 +199,7 @@ function ServiceForm({ form, professionals, onClose, onSave }) {
           </div>
           <ExtraFields entity="service" value={state.extra} onChange={(extra) => setState({ ...state, extra })} />
         </div>
-        <div className="flex justify-end gap-2 border-t border-[#dadce0] px-5 py-3">
+        <div className="flex justify-end gap-2 border-t border-(color:--c-line) px-5 py-3">
           <button type="button" className="pill-btn" onClick={onClose}>Cerrar</button>
           <button type="submit" className="pill-btn primary">Guardar</button>
         </div>

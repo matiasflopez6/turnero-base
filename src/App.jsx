@@ -57,7 +57,7 @@ export default function App() {
 function RequireAuth({ children }) {
   const { isAuthenticated, loading } = useAuth();
   if (loading) {
-    return <div className="grid min-h-full place-items-center text-[#70757a]">Cargando…</div>;
+    return <div className="grid min-h-full place-items-center text-(color:--c-muted)">Cargando…</div>;
   }
   if (!isAuthenticated) return <Navigate to="/login" replace />;
   return children;

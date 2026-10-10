@@ -98,7 +98,7 @@ export default function ClinicalNoteForm({
   return (
     <div className="modal-backdrop stacked" onClick={onClose}>
       <form className="modal-card wide" onClick={(ev) => ev.stopPropagation()} onSubmit={submit}>
-        <div className="border-b border-[#dadce0] px-5 py-4 text-lg">
+        <div className="border-b border-(color:--c-line) px-5 py-4 text-lg">
           {note?.id ? 'Editar entrada' : 'Nueva entrada de historia clínica'}
         </div>
         <div className="grid max-h-[min(70vh,640px)] gap-3 overflow-auto px-5 py-4">
@@ -148,8 +148,8 @@ export default function ClinicalNoteForm({
             />
           </label>
           {fields.length > 0 && (
-            <div className="grid gap-3 rounded-lg border border-[#dadce0] p-3">
-              <div className="text-xs font-medium uppercase tracking-wide text-[#70757a]">
+            <div className="grid gap-3 rounded-lg border border-(color:--c-line) p-3">
+              <div className="text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">
                 Campos personalizados
               </div>
               {fields.map((field) => (
@@ -169,9 +169,9 @@ export default function ClinicalNoteForm({
           )}
           {note?.files?.length > 0 && (
             <div className="grid gap-2">
-              <div className="text-xs font-medium uppercase tracking-wide text-[#70757a]">Archivos actuales</div>
+              <div className="text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">Archivos actuales</div>
               {note.files.map((file) => (
-                <div key={file.id} className="flex items-center justify-between gap-3 rounded-lg border border-[#dadce0] px-3 py-2 text-sm">
+                <div key={file.id} className="flex items-center justify-between gap-3 rounded-lg border border-(color:--c-line) px-3 py-2 text-sm">
                   <div className="flex min-w-0 items-center gap-3">
                     <StoredImagePreview file={file} />
                     <span className="truncate">{file.original_name}</span>
@@ -192,11 +192,11 @@ export default function ClinicalNoteForm({
           )}
           <div className="field">
             <span>Imágenes o archivos</span>
-            <p className="text-xs text-[#70757a]">Imágenes, PDF o documentos. Podés arrastrarlos o elegirlos.</p>
+            <p className="text-xs text-(color:--c-muted)">Imágenes, PDF o documentos. Podés arrastrarlos o elegirlos.</p>
             <button
               type="button"
               className={`mt-1 grid min-h-28 place-items-center rounded-xl border border-dashed px-4 py-6 text-center ${
-                dragOver ? 'border-[#1a73e8] bg-[#e8f0fe]' : 'border-[#dadce0] bg-[#f8f9fa]'
+                dragOver ? 'border-(color:--c-accent) bg-(color:--c-accent-tint)' : 'border-(color:--c-line) bg-(color:--c-subtle)'
               }`}
               onClick={() => fileInput.current?.click()}
               onDragOver={(ev) => {
@@ -211,8 +211,8 @@ export default function ClinicalNoteForm({
               }}
             >
               <span>
-                <span className="block text-sm font-medium text-[#3c4043]">Arrastrá para subir</span>
-                <span className="mt-1 block text-xs text-[#70757a]">o hacé clic para elegir archivos</span>
+                <span className="block text-sm font-medium text-(color:--c-text)">Arrastrá para subir</span>
+                <span className="mt-1 block text-xs text-(color:--c-muted)">o hacé clic para elegir archivos</span>
               </span>
             </button>
             <input
@@ -239,7 +239,7 @@ export default function ClinicalNoteForm({
             )}
           </div>
         </div>
-        <div className="flex justify-end gap-2 border-t border-[#dadce0] px-5 py-3">
+        <div className="flex justify-end gap-2 border-t border-(color:--c-line) px-5 py-3">
           <button type="button" className="pill-btn" onClick={onClose}>
             Cerrar
           </button>
@@ -269,15 +269,15 @@ function PendingFile({ file, onRemove }) {
       <div className="relative">
         {isImage && url ? (
           <button type="button" onClick={() => setOpen(true)} title="Ver imagen">
-            <img src={url} alt={file.name} className="h-24 w-24 rounded-lg border border-[#dadce0] object-cover" />
+            <img src={url} alt={file.name} className="h-24 w-24 rounded-lg border border-(color:--c-line) object-cover" />
           </button>
         ) : (
-          <div className="max-w-40 truncate rounded-lg border border-[#dadce0] px-3 py-2 text-xs">{file.name}</div>
+          <div className="max-w-40 truncate rounded-lg border border-(color:--c-line) px-3 py-2 text-xs">{file.name}</div>
         )}
         <button
           type="button"
           aria-label="Quitar archivo"
-          className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-[#3c4043] text-sm font-medium leading-none text-white shadow"
+          className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-(color:--c-inverse) text-sm font-medium leading-none text-white shadow"
           onClick={onRemove}
         >
           ×
@@ -289,7 +289,7 @@ function PendingFile({ file, onRemove }) {
             <button
               type="button"
               aria-label="Cerrar vista previa"
-              className="absolute -right-2 -top-2 grid h-8 w-8 place-items-center rounded-full bg-[#3c4043] text-lg text-white"
+              className="absolute -right-2 -top-2 grid h-8 w-8 place-items-center rounded-full bg-(color:--c-inverse) text-lg text-white"
               onClick={() => setOpen(false)}
             >
               ×

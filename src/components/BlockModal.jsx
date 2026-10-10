@@ -51,7 +51,7 @@ export default function BlockModal({ open, onClose, onSave, onDelete, block, def
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <form className="modal-card" onClick={(ev) => ev.stopPropagation()} onSubmit={submit}>
-        <div className="flex items-center justify-between border-b border-[#dadce0] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-(color:--c-line) px-5 py-4">
           <h2 className="text-lg font-medium">{form.id ? 'Bloqueo de horario' : 'Nuevo bloqueo'}</h2>
           <button type="button" className="icon-btn" onClick={onClose}>×</button>
         </div>
@@ -91,7 +91,7 @@ export default function BlockModal({ open, onClose, onSave, onDelete, block, def
             <textarea rows={2} value={form.reason} onChange={(e) => setForm({ ...form, reason: e.target.value })} />
           </label>
         </div>
-        <div className="flex items-center justify-between border-t border-[#dadce0] px-5 py-3">
+        <div className="flex items-center justify-between border-t border-(color:--c-line) px-5 py-3">
           <div>
             {form.id && (
               <button type="button" className="text-sm text-red-600" onClick={() => onDelete?.(form.id)}>

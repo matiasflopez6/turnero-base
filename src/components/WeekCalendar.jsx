@@ -183,9 +183,9 @@ export default function WeekCalendar({
                       width,
                       left,
                       right: 'auto',
-                      background: isBlock ? '#e8eaed' : hexToRgba(color, 0.22),
-                      color: isBlock ? '#3c4043' : shade(color),
-                      borderColor: isBlock ? '#dadce0' : hexToRgba(color, 0.4),
+                      background: isBlock ? 'var(--c-block-bg)' : hexToRgba(color, 0.22),
+                      color: isBlock ? 'var(--c-block-text)' : `var(--chip-text, ${shade(color)})`,
+                      borderColor: isBlock ? 'var(--c-line)' : hexToRgba(color, 0.4),
                     }}
                     onPointerDown={(ev) => handlePointerDown(ev, event)}
                     onPointerUp={(ev) => handlePointerUp(ev, day, event)}

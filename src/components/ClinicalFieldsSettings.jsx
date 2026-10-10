@@ -37,7 +37,7 @@ export default function ClinicalFieldsSettings({ professionals, services }) {
     <section id="seccion-historia" className="mt-2 scroll-mt-24 max-w-4xl space-y-5">
       <div>
         <h2 className="text-xl">Campos de historia clínica</h2>
-        <p className="mt-1 text-sm text-[#70757a]">
+        <p className="mt-1 text-sm text-(color:--c-muted)">
           Además de los detalles y archivos, cada servicio o profesional puede tener campos propios. Se muestran al
           cargar una entrada según el turno elegido.
         </p>
@@ -68,7 +68,7 @@ function OwnerGroup({ title, owners, fieldsByOwner, ownerType, onChange, onError
     <div className="grid gap-3">
       <h3 className="text-base font-medium">{title}</h3>
       {owners.map((owner) => (
-        <div key={owner.id} className="rounded-xl border border-[#dadce0] p-4">
+        <div key={owner.id} className="rounded-xl border border-(color:--c-line) p-4">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <div className="mr-auto font-medium">{owner.name}</div>
             <button
@@ -97,7 +97,7 @@ function OwnerGroup({ title, owners, fieldsByOwner, ownerType, onChange, onError
               <FieldRow key={field.id} field={field} onChange={onChange} onError={onError} />
             ))}
             {!(fieldsByOwner[owner.id] || []).length && (
-              <div className="text-sm text-[#70757a]">Sin campos extra. Se usan solo detalles y archivos.</div>
+              <div className="text-sm text-(color:--c-muted)">Sin campos extra. Se usan solo detalles y archivos.</div>
             )}
           </div>
         </div>
@@ -126,15 +126,15 @@ function FieldRow({ field, onChange, onError }) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-[#f8f9fa] p-3">
+    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-(color:--c-subtle) p-3">
       <input
-        className="min-w-[160px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+        className="min-w-[160px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
         value={state.label}
         onChange={(e) => setState({ ...state, label: e.target.value })}
         onBlur={() => save()}
       />
       <select
-        className="rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+        className="rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
         value={state.fieldType}
         onChange={(e) => {
           const next = { ...state, fieldType: e.target.value };
@@ -162,7 +162,7 @@ function FieldRow({ field, onChange, onError }) {
       </label>
       {state.fieldType === 'select' && (
         <input
-          className="min-w-[180px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+          className="min-w-[180px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
           placeholder="Opciones, separadas por coma"
           value={state.options}
           onChange={(e) => setState({ ...state, options: e.target.value })}

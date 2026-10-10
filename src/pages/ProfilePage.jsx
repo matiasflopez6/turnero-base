@@ -32,7 +32,7 @@ export default function ProfilePage() {
   return (
     <div className="h-full overflow-auto p-4 sm:p-6">
       <h1 className="mb-1 text-2xl">Mi perfil</h1>
-      <p className="mb-4 text-sm text-[#70757a]">
+      <p className="mb-4 text-sm text-(color:--c-muted)">
         {locked
           ? 'La cuenta de administrador se define en el servidor. Estos datos son solo de consulta.'
           : 'Foto, contraseña y datos de tu cuenta.'}
@@ -63,7 +63,7 @@ export default function ProfilePage() {
         }}
       >
         {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
-        {saved && <div className="rounded-lg bg-[#e6f4ea] px-3 py-2 text-sm text-[#0b8043]">Perfil actualizado</div>}
+        {saved && <div className="rounded-lg bg-(color:--c-success-tint) px-3 py-2 text-sm text-(color:--c-success)">Perfil actualizado</div>}
         <PhotoField src="/api/auth/me/photo" hasPhoto={user.hasPhoto} file={photo} onFile={setPhoto} readOnly={locked} />
         <label className="field">
           <span>Nombre</span>

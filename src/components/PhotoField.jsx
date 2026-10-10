@@ -55,7 +55,7 @@ export function PhotoField({ kind, id, hasPhoto, src, file, onFile, readOnly = f
             src={src}
             hasPhoto={hasPhoto}
             className="h-16 w-16"
-            fallback={<span className="grid h-16 w-16 place-items-center rounded-full bg-[#f1f3f4] text-xs text-[#70757a]">Foto</span>}
+            fallback={<span className="grid h-16 w-16 place-items-center rounded-full bg-(color:--c-hover) text-xs text-(color:--c-muted)">Foto</span>}
           />
         )}
         {!readOnly && <input type="file" accept="image/*" onChange={(e) => onFile(e.target.files?.[0] || null)} />}

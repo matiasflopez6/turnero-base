@@ -121,7 +121,7 @@ export default function CalendarPage() {
     <>
       <div className="relative mb-5 hidden lg:block">
         <button className="create-btn" type="button" onClick={() => setMenuOpen((v) => !v)}>
-          <Plus size={22} className="text-[#1a73e8]" />
+          <Plus size={22} className="text-(color:--c-accent)" />
           Crear
         </button>
         {menuOpen && (
@@ -145,7 +145,7 @@ export default function CalendarPage() {
         onCursorChange={setViewDate}
       />
       <div className="mt-6">
-        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-[#70757a]">Páginas de reserva</div>
+        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">Páginas de reserva</div>
         {professionals
           .filter((p) => p.share_enabled && p.share_slug)
           .map((pro) => (
@@ -158,7 +158,7 @@ export default function CalendarPage() {
           ))}
       </div>
       <div className="mt-6">
-        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-[#70757a]">Estado</div>
+        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">Estado</div>
         {STATUSES.map((item) => (
           <label key={item.id} className="flex cursor-pointer items-center gap-2 rounded-lg px-1 py-1.5 text-sm">
             <input
@@ -174,7 +174,7 @@ export default function CalendarPage() {
         ))}
       </div>
       <div className="mt-6">
-        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-[#70757a]">Mis calendarios</div>
+        <div className="mb-2 text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">Mis calendarios</div>
         {professionals.map((pro) => (
           <label key={pro.id} className="flex cursor-pointer items-center gap-2 rounded-lg px-1 py-1.5 text-sm">
             <input
@@ -271,7 +271,7 @@ export default function CalendarPage() {
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Crear"
         >
-          <Plus size={22} className="text-[#1a73e8]" />
+          <Plus size={22} className="text-(color:--c-accent)" />
           Crear
         </button>
         {menuOpen && (
@@ -370,11 +370,11 @@ function toMin(value) {
 
 function CreateMenu({ onTurno, onBloqueo, className = 'left-0 top-14' }) {
   return (
-    <div className={`absolute z-10 w-52 rounded-lg bg-white py-2 shadow-lg ring-1 ring-black/5 ${className}`}>
-      <button className="flex w-full items-center gap-2 px-4 py-2 text-left hover:bg-[#f1f3f4]" onClick={onTurno}>
+    <div className={`absolute z-10 w-52 rounded-lg bg-(color:--c-surface) py-2 shadow-lg ring-1 ring-black/5 ${className}`}>
+      <button className="flex w-full items-center gap-2 px-4 py-2 text-left hover:bg-(color:--c-hover)" onClick={onTurno}>
         <CalendarPlus size={16} /> Turno
       </button>
-      <button className="flex w-full items-center gap-2 px-4 py-2 text-left hover:bg-[#f1f3f4]" onClick={onBloqueo}>
+      <button className="flex w-full items-center gap-2 px-4 py-2 text-left hover:bg-(color:--c-hover)" onClick={onBloqueo}>
         <Plus size={16} /> Bloqueo de horario
       </button>
     </div>
@@ -384,14 +384,14 @@ function CreateMenu({ onTurno, onBloqueo, className = 'left-0 top-14' }) {
 function ShareLink({ href, label }) {
   return (
     <a
-      className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-[#1a73e8] hover:bg-[#f1f3f4]"
+      className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-(color:--c-accent) hover:bg-(color:--c-hover)"
       href={href}
       target="_blank"
       rel="noreferrer"
       title="Abrir página pública de reserva"
     >
       <span className="min-w-0 flex-1 truncate">{label}</span>
-      <ExternalLink size={14} className="shrink-0 text-[#70757a]" aria-hidden="true" />
+      <ExternalLink size={14} className="shrink-0 text-(color:--c-muted)" aria-hidden="true" />
     </a>
   );
 }

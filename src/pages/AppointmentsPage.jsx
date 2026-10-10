@@ -54,13 +54,13 @@ export default function AppointmentsPage() {
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <h1 className="mr-auto text-2xl">Turnos</h1>
         <input
-          className="h-9 w-full min-w-0 rounded-full border border-[#dadce0] px-4 text-sm outline-none focus:border-[#1a73e8] sm:w-auto sm:min-w-[220px]"
+          className="h-9 w-full min-w-0 rounded-full border border-(color:--c-line) px-4 text-sm outline-none focus:border-(color:--c-accent) sm:w-auto sm:min-w-[220px]"
           placeholder="Buscar paciente o profesional…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
         <input
-          className="h-9 w-full rounded-full border border-[#dadce0] px-3 text-sm outline-none focus:border-[#1a73e8] sm:w-auto"
+          className="h-9 w-full rounded-full border border-(color:--c-line) px-3 text-sm outline-none focus:border-(color:--c-accent) sm:w-auto"
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
@@ -92,16 +92,16 @@ export default function AppointmentsPage() {
           <button
             key={row.id}
             type="button"
-            className="rounded-xl border border-[#dadce0] p-4 text-left"
+            className="rounded-xl border border-(color:--c-line) p-4 text-left"
             onClick={() => setSelected(row)}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="font-medium">{row.patient?.name || 'Sin paciente'}</div>
-                <div className="mt-1 text-sm capitalize text-[#70757a]">
+                <div className="mt-1 text-sm capitalize text-(color:--c-muted)">
                   {formatInTimeZone(new Date(row.starts_at), tz, "EEE d MMM", { locale: es })} · {formatRangeLabel(new Date(row.starts_at), new Date(row.ends_at), tz)}
                 </div>
-                <div className="mt-1 truncate text-sm text-[#3c4043]">
+                <div className="mt-1 truncate text-sm text-(color:--c-text)">
                   {row.professional?.name} · {row.service?.name}
                 </div>
               </div>
@@ -109,11 +109,11 @@ export default function AppointmentsPage() {
             </div>
           </button>
         ))}
-        {!rows.length && <div className="rounded-xl border border-[#dadce0] px-4 py-8 text-center text-sm text-[#70757a]">No hay turnos para estos filtros.</div>}
+        {!rows.length && <div className="rounded-xl border border-(color:--c-line) px-4 py-8 text-center text-sm text-(color:--c-muted)">No hay turnos para estos filtros.</div>}
       </div>
-      <div className="hidden overflow-x-auto rounded-xl border border-[#dadce0] md:block">
+      <div className="hidden overflow-x-auto rounded-xl border border-(color:--c-line) md:block">
         <table className="w-full text-left text-sm">
-          <thead className="bg-[#f8f9fa] text-[#70757a]">
+          <thead className="bg-(color:--c-subtle) text-(color:--c-muted)">
             <tr>
               <th className="px-4 py-3 font-medium">Fecha</th>
               <th className="px-4 py-3 font-medium">Horario</th>
@@ -127,7 +127,7 @@ export default function AppointmentsPage() {
             {rows.map((row) => (
               <tr
                 key={row.id}
-                className="cursor-pointer border-t border-[#dadce0] hover:bg-[#f8f9fa]"
+                className="cursor-pointer border-t border-(color:--c-line) hover:bg-(color:--c-subtle)"
                 onClick={() => setSelected(row)}
               >
                 <td className="px-4 py-3 capitalize">{formatInTimeZone(new Date(row.starts_at), tz, "EEE d MMM yyyy", { locale: es })}</td>
@@ -140,7 +140,7 @@ export default function AppointmentsPage() {
             ))}
             {!rows.length && (
               <tr>
-                <td className="px-4 py-8 text-center text-[#70757a]" colSpan={6}>
+                <td className="px-4 py-8 text-center text-(color:--c-muted)" colSpan={6}>
                   No hay turnos para estos filtros.
                 </td>
               </tr>
@@ -172,14 +172,14 @@ export default function AppointmentsPage() {
 }
 
 const STATUS_BADGE = {
-  RESERVADO: { label: 'Reservado', color: '#1a73e8', tint: '#e8f0fe' },
-  CONFIRMADO: { label: 'Confirmado', color: '#0b8043', tint: '#e6f4ea' },
-  COMPLETADO: { label: 'Completado', color: '#5f6368', tint: '#f1f3f4' },
-  CANCELADO: { label: 'Cancelado', color: '#d93025', tint: '#fce8e6' },
+  RESERVADO: { label: 'Reservado', color: 'var(--st-reservado)', tint: 'var(--st-reservado-tint)' },
+  CONFIRMADO: { label: 'Confirmado', color: 'var(--st-confirmado)', tint: 'var(--st-confirmado-tint)' },
+  COMPLETADO: { label: 'Completado', color: 'var(--st-completado)', tint: 'var(--st-completado-tint)' },
+  CANCELADO: { label: 'Cancelado', color: 'var(--st-cancelado)', tint: 'var(--st-cancelado-tint)' },
 };
 
 function StatusBadge({ status }) {
-  const item = STATUS_BADGE[status] || { label: status, color: '#5f6368', tint: '#f1f3f4' };
+  const item = STATUS_BADGE[status] || { label: status, color: 'var(--st-completado)', tint: 'var(--st-completado-tint)' };
   return (
     <span
       className="inline-flex h-7 items-center rounded-full px-3 text-xs font-medium"

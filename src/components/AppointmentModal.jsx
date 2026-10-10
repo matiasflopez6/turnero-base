@@ -6,10 +6,10 @@ import ClinicalNoteForm from './ClinicalNoteForm';
 import ClinicalHistorySummary from './ClinicalHistorySummary';
 
 const STATUSES = [
-  { id: 'RESERVADO', label: 'Reservado', color: '#1a73e8', tint: '#e8f0fe' },
-  { id: 'CONFIRMADO', label: 'Confirmado', color: '#0b8043', tint: '#e6f4ea' },
-  { id: 'COMPLETADO', label: 'Completado', color: '#5f6368', tint: '#f1f3f4' },
-  { id: 'CANCELADO', label: 'Cancelado', color: '#d93025', tint: '#fce8e6' },
+  { id: 'RESERVADO', label: 'Reservado', color: 'var(--st-reservado)', tint: 'var(--st-reservado-tint)' },
+  { id: 'CONFIRMADO', label: 'Confirmado', color: 'var(--st-confirmado)', tint: 'var(--st-confirmado-tint)' },
+  { id: 'COMPLETADO', label: 'Completado', color: 'var(--st-completado)', tint: 'var(--st-completado-tint)' },
+  { id: 'CANCELADO', label: 'Cancelado', color: 'var(--st-cancelado)', tint: 'var(--st-cancelado-tint)' },
 ];
 
 export default function AppointmentModal({
@@ -135,7 +135,7 @@ export default function AppointmentModal({
     <>
     <div className="modal-backdrop" onClick={onClose}>
       <form className="modal-card" onClick={(ev) => ev.stopPropagation()} onSubmit={submit}>
-        <div className="flex items-center justify-between border-b border-[#dadce0] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-(color:--c-line) px-5 py-4">
           <h2 className="text-lg font-medium">{form.id ? 'Turno' : 'Nuevo turno'}</h2>
           <button type="button" className="icon-btn" onClick={onClose}>
             ×
@@ -206,7 +206,7 @@ export default function AppointmentModal({
                       className="pill-btn text-sm"
                       style={
                         active
-                          ? { background: item.color, borderColor: item.color, color: '#fff' }
+                          ? { background: item.color, borderColor: item.color, color: 'var(--c-on-status)' }
                           : { background: item.tint, borderColor: item.tint, color: item.color }
                       }
                       onClick={() => setForm({ ...form, status: item.id })}
@@ -223,11 +223,11 @@ export default function AppointmentModal({
             </label>
           </div>
         </div>
-        <div className="border-t border-[#dadce0] px-5 py-3">
+        <div className="border-t border-(color:--c-line) px-5 py-3">
           {form.patientId && (
             <div className="mb-3">
               {form.id && (
-                <p className="mb-3 rounded-xl border border-[#f9ab00] bg-[#fef7e0] px-4 py-3 text-sm font-medium text-[#e37400]">
+                <p className="mb-3 rounded-xl border border-(color:--c-warn-line) bg-(color:--c-warn-tint) px-4 py-3 text-sm font-medium text-(color:--c-warn)">
                   {evolutionCount === 0
                     ? 'Este turno no tiene evoluciones.'
                     : evolutionCount === 1
@@ -238,14 +238,14 @@ export default function AppointmentModal({
               <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                className="pill-btn border-transparent bg-[#e8f0fe] text-sm text-[#1a73e8] hover:bg-[#d2e3fc]"
+                className="pill-btn border-transparent bg-(color:--c-accent-tint) text-sm text-(color:--c-accent) hover:bg-(color:--c-accent-tint-2)"
                 onClick={() => openClinical('note')}
               >
                 Evolución de consulta
               </button>
               <button
                 type="button"
-                className="pill-btn border-transparent bg-[#e8f0fe] text-sm text-[#1a73e8] hover:bg-[#d2e3fc]"
+                className="pill-btn border-transparent bg-(color:--c-accent-tint) text-sm text-(color:--c-accent) hover:bg-(color:--c-accent-tint-2)"
                 onClick={() => openClinical('summary')}
               >
                 Ver historia

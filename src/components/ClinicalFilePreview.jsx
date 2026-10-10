@@ -13,10 +13,10 @@ export function LocalImagePreview({ file }) {
   }, [file, isImage]);
 
   if (!isImage) {
-    return <div className="max-w-40 truncate rounded-lg border border-[#dadce0] px-3 py-2 text-xs">{file.name}</div>;
+    return <div className="max-w-40 truncate rounded-lg border border-(color:--c-line) px-3 py-2 text-xs">{file.name}</div>;
   }
   if (!url) return null;
-  return <img src={url} alt={file.name} className="h-24 w-24 rounded-lg border border-[#dadce0] object-cover" />;
+  return <img src={url} alt={file.name} className="h-24 w-24 rounded-lg border border-(color:--c-line) object-cover" />;
 }
 
 export function StoredImagePreview({ file }) {
@@ -49,9 +49,9 @@ export function StoredImagePreview({ file }) {
   return (
     <a href={url || undefined} target="_blank" rel="noreferrer" className="block">
       {url ? (
-        <img src={url} alt={file.original_name} className="h-24 w-24 rounded-lg border border-[#dadce0] object-cover" />
+        <img src={url} alt={file.original_name} className="h-24 w-24 rounded-lg border border-(color:--c-line) object-cover" />
       ) : (
-        <div className="h-24 w-24 rounded-lg bg-[#f1f3f4]" />
+        <div className="h-24 w-24 rounded-lg bg-(color:--c-hover)" />
       )}
     </a>
   );

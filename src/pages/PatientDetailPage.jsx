@@ -30,7 +30,7 @@ export default function PatientDetailPage() {
   }, [id]);
 
   if (!patient) {
-    return <div className="p-6 text-[#70757a]">{error || 'Cargando…'}</div>;
+    return <div className="p-6 text-(color:--c-muted)">{error || 'Cargando…'}</div>;
   }
 
   return (
@@ -38,7 +38,7 @@ export default function PatientDetailPage() {
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <div className="mr-auto min-w-0">
           <h1 className="truncate text-2xl">{patient.name}</h1>
-          <div className="text-sm text-[#70757a]">
+          <div className="text-sm text-(color:--c-muted)">
             {patient.dni ? `DNI ${patient.dni} · ` : ''}
             {patient.phone || 'Sin teléfono'}
             {patient.email ? ` · ${patient.email}` : ''}
@@ -69,16 +69,16 @@ export default function PatientDetailPage() {
       </div>
       {error && <div className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
       {patient.notes && (
-        <p className="mb-5 max-w-3xl text-sm text-[#70757a]">{patient.notes}</p>
+        <p className="mb-5 max-w-3xl text-sm text-(color:--c-muted)">{patient.notes}</p>
       )}
       <h2 className="mb-3 text-lg">Historia clínica</h2>
       <div className="grid gap-3">
         {notes.map((note) => (
-          <article key={note.id} className="rounded-xl border border-[#dadce0] p-4">
+          <article key={note.id} className="rounded-xl border border-(color:--c-line) p-4">
             <div className="mb-3 flex flex-wrap items-start gap-2">
               <div className="mr-auto min-w-0">
                 <div className="font-medium">{noteHeading(note)}</div>
-                <div className="text-sm text-[#70757a]">{noteMetaLine(note, tz)}</div>
+                <div className="text-sm text-(color:--c-muted)">{noteMetaLine(note, tz)}</div>
               </div>
               <button className="pill-btn" onClick={() => setEditingNote(note)}>
                 Editar
@@ -99,7 +99,7 @@ export default function PatientDetailPage() {
               <dl className="mt-3 grid gap-1 text-sm">
                 {visibleCustomValues(note).map((item) => (
                     <div key={`${item.id}-${item.label}`} className="flex gap-2">
-                      <dt className="text-[#70757a]">{item.label}:</dt>
+                      <dt className="text-(color:--c-muted)">{item.label}:</dt>
                       <dd>{formatCustomValue(item)}</dd>
                     </div>
                   ))}
@@ -115,7 +115,7 @@ export default function PatientDetailPage() {
           </article>
         ))}
         {!notes.length && (
-          <div className="rounded-xl border border-dashed border-[#dadce0] px-4 py-10 text-center text-[#70757a]">
+          <div className="rounded-xl border border-dashed border-(color:--c-line) px-4 py-10 text-center text-(color:--c-muted)">
             Todavía no hay entradas. Creá la primera con el turno, los detalles y archivos si hace falta.
           </div>
         )}
@@ -166,7 +166,7 @@ function ClinicalFileLink({ file }) {
   }
   if (isImage) {
     return (
-      <div className="inline-flex max-w-full items-center gap-2 rounded-lg border border-[#dadce0] px-3 py-2 text-left text-sm">
+      <div className="inline-flex max-w-full items-center gap-2 rounded-lg border border-(color:--c-line) px-3 py-2 text-left text-sm">
         <StoredImagePreview file={file} />
         <span className="truncate">{file.original_name}</span>
       </div>
@@ -175,7 +175,7 @@ function ClinicalFileLink({ file }) {
   return (
     <button
       type="button"
-      className="inline-flex max-w-full items-center gap-2 rounded-lg border border-[#dadce0] px-3 py-2 text-left text-sm hover:bg-[#f8f9fa]"
+      className="inline-flex max-w-full items-center gap-2 rounded-lg border border-(color:--c-line) px-3 py-2 text-left text-sm hover:bg-(color:--c-subtle)"
       onClick={() => openFile().catch(() => {})}
     >
       <Paperclip size={14} />

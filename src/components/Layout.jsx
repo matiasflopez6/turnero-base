@@ -20,6 +20,7 @@ import { api } from '../api';
 import { useAuth } from '../auth';
 import { useClinic } from '../clinic';
 import { can } from '../lib/permissions';
+import { ThemeToggle } from '../theme';
 import PoweredBy from './PoweredBy';
 import Sitemap from './Sitemap';
 
@@ -48,22 +49,23 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="flex h-full flex-col bg-white">
+    <div className="flex h-full flex-col bg-(color:--c-surface)">
       <header className="gcal-header" style={{ display: 'flex' }}>
         <button className="icon-btn" type="button" onClick={() => setOpen(true)} aria-label="Menú">
           <Menu size={22} />
         </button>
         <div className="flex min-w-0 items-center gap-2 pr-2">
-          <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#1a73e8] text-sm font-semibold text-white sm:h-10 sm:w-10 sm:text-lg">
+          <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-(color:--c-primary) text-sm font-semibold text-white sm:h-10 sm:w-10 sm:text-lg">
             {new Date().getDate()}
           </div>
           <div className="min-w-0">
-            <div className="truncate text-lg text-[#5f6368] sm:text-xl">Calendar</div>
-            <div className="hidden truncate text-xs text-[#70757a] sm:block">{settings?.name || 'Turnero'}</div>
+            <div className="truncate text-lg text-(color:--c-icon) sm:text-xl">Calendar</div>
+            <div className="hidden truncate text-xs text-(color:--c-muted) sm:block">{settings?.name || 'Turnero'}</div>
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <span className="hidden text-sm text-[#70757a] sm:block">{user?.name || user?.username}</span>
+          <span className="hidden text-sm text-(color:--c-muted) sm:block">{user?.name || user?.username}</span>
+          <ThemeToggle />
           <button className="icon-btn" type="button" onClick={logout} title="Salir">
             <LogOut size={18} />
           </button>
@@ -74,7 +76,7 @@ export default function Layout() {
         <div className="fixed inset-0 z-40" onClick={() => setOpen(false)}>
           <div className="absolute inset-0 bg-black/20" />
           <aside
-            className="absolute bottom-0 left-0 top-0 w-[min(320px,90vw)] overflow-auto bg-white p-4 shadow-xl"
+            className="absolute bottom-0 left-0 top-0 w-[min(320px,90vw)] overflow-auto bg-(color:--c-surface) p-4 shadow-xl"
             onClick={(ev) => ev.stopPropagation()}
           >
             <div className="mb-4 flex items-center justify-between">

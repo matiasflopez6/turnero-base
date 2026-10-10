@@ -14,7 +14,7 @@ export default function MonthCalendar({ viewDate, events, tz, weekStartsOn = 1, 
 
   return (
     <div className="flex h-full flex-col overflow-auto pb-24 lg:pb-0">
-      <div className="grid grid-cols-7 border-b border-[#dadce0] text-center text-xs font-medium uppercase text-[#70757a]">
+      <div className="grid grid-cols-7 border-b border-(color:--c-line) text-center text-xs font-medium uppercase text-(color:--c-muted)">
         {['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB']
           .slice(weekStartsOn)
           .concat(['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'].slice(0, weekStartsOn))
@@ -33,12 +33,12 @@ export default function MonthCalendar({ viewDate, events, tz, weekStartsOn = 1, 
             <button
               type="button"
               key={key}
-              className="min-h-[72px] border-b border-r border-[#dadce0] p-0.5 text-left hover:bg-[#f8f9fa] sm:min-h-[110px] sm:p-1"
+              className="min-h-[72px] border-b border-r border-(color:--c-line) p-0.5 text-left hover:bg-(color:--c-subtle) sm:min-h-[110px] sm:p-1"
               onClick={() => onDayClick?.(day)}
             >
               <div
                 className={`mb-1 ml-1 grid h-7 w-7 place-items-center rounded-full text-sm ${
-                  isToday ? 'bg-[#1a73e8] text-white' : isSameMonth(day, viewDate) ? '' : 'text-[#bdc1c6]'
+                  isToday ? 'bg-(color:--c-primary) text-white' : isSameMonth(day, viewDate) ? '' : 'text-(color:--c-disabled)'
                 }`}
               >
                 {format(day, 'd', { locale: es })}
@@ -48,7 +48,7 @@ export default function MonthCalendar({ viewDate, events, tz, weekStartsOn = 1, 
                   <div
                     key={`${event.tipo}-${event.id}`}
                     className="truncate rounded px-1 text-[11px]"
-                    style={{ background: event.tipo === 'bloqueo' ? '#e8eaed' : event.color || '#1a73e8', color: event.tipo === 'bloqueo' ? '#3c4043' : '#fff' }}
+                    style={{ background: event.tipo === 'bloqueo' ? 'var(--c-block-bg)' : event.color || '#1a73e8', color: event.tipo === 'bloqueo' ? 'var(--c-block-text)' : '#fff' }}
                     onClick={(ev) => {
                       ev.stopPropagation();
                       onEventClick?.(event);
@@ -58,7 +58,7 @@ export default function MonthCalendar({ viewDate, events, tz, weekStartsOn = 1, 
                   </div>
                 ))}
                 {dayEvents.length > 3 && (
-                  <div className="px-1 text-[11px] text-[#70757a]">+{dayEvents.length - 3} más</div>
+                  <div className="px-1 text-[11px] text-(color:--c-muted)">+{dayEvents.length - 3} más</div>
                 )}
               </div>
             </button>

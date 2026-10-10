@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../auth';
 import { api } from '../api';
 import PoweredBy from '../components/PoweredBy';
+import { ThemeToggle } from '../theme';
 
 export default function LoginPage() {
   const { login, isAuthenticated, loading } = useAuth();
@@ -35,16 +36,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-full flex-col bg-[#f8f9fa]">
+    <div className="flex min-h-full flex-col bg-(color:--c-subtle)">
       <div className="grid flex-1 place-items-center p-4">
-        <form onSubmit={submit} className="w-full max-w-md rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#dadce0] sm:p-8">
+        <form onSubmit={submit} className="w-full max-w-md rounded-2xl bg-(color:--c-surface) p-5 shadow-sm ring-1 ring-(color:--c-line) sm:p-8">
           <div className="mb-6 flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-lg bg-[#1a73e8] text-lg font-semibold text-white">
+            <div className="grid h-11 w-11 place-items-center rounded-lg bg-(color:--c-primary) text-lg font-semibold text-white">
               {new Date().getDate()}
             </div>
             <div>
-              <div className="text-2xl text-[#3c4043]">Turnero Clínicas</div>
-              <div className="text-sm text-[#70757a]">Entrá para gestionar la agenda</div>
+              <div className="text-2xl text-(color:--c-text)">Turnero Clínicas</div>
+              <div className="text-sm text-(color:--c-muted)">Entrá para gestionar la agenda</div>
             </div>
           </div>
           {error && <div className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
@@ -63,20 +64,20 @@ export default function LoginPage() {
           </label>
           <button
             type="submit"
-            className="h-11 w-full rounded-full bg-[#1a73e8] font-medium text-white disabled:opacity-60"
+            className="h-11 w-full rounded-full bg-(color:--c-primary) font-medium text-white disabled:opacity-60"
             disabled={busy}
           >
             Ingresar
           </button>
           {emailEnabled && (
-          <button type="button" className="mt-4 text-sm text-[#1a73e8]" onClick={() => setForgot(true)}>
+          <button type="button" className="mt-4 text-sm text-(color:--c-accent)" onClick={() => setForgot(true)}>
             Olvidé mi contraseña
           </button>
           )}
           {emailEnabled && forgot && (
-            <div className="mt-4 border-t border-[#dadce0] pt-4">
+            <div className="mt-4 border-t border-(color:--c-line) pt-4">
               {sent ? (
-                <p className="text-sm text-[#3c4043]">Si el email está cargado en un usuario, vas a recibir un enlace para definir la contraseña.</p>
+                <p className="text-sm text-(color:--c-text)">Si el email está cargado en un usuario, vas a recibir un enlace para definir la contraseña.</p>
               ) : (
                 <>
                   <label className="field mb-3">
@@ -108,6 +109,7 @@ export default function LoginPage() {
           )}
         </form>
       </div>
+      <ThemeToggle floating />
       <PoweredBy />
     </div>
   );

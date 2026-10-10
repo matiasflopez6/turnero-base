@@ -84,33 +84,33 @@ export default function PatientPicker({ value, onChange }) {
         </div>
       </label>
       {value?.id && (
-        <div className="mt-1 text-xs text-[#70757a]">
+        <div className="mt-1 text-xs text-(color:--c-muted)">
           Seleccionado: {value.name}
           {value.phone ? ` · ${value.phone}` : ''}
         </div>
       )}
       {open && (
-        <div className="absolute z-20 mt-1 w-full overflow-hidden rounded-lg border border-[#dadce0] bg-white shadow-lg">
+        <div className="absolute z-20 mt-1 w-full overflow-hidden rounded-lg border border-(color:--c-line) bg-(color:--c-surface) shadow-lg">
           {results.map((patient) => (
             <button
               key={patient.id}
               type="button"
-              className="flex w-full flex-col items-start px-3 py-2 text-left hover:bg-[#f1f3f4]"
+              className="flex w-full flex-col items-start px-3 py-2 text-left hover:bg-(color:--c-hover)"
               onClick={() => selectPatient(patient)}
             >
               <span className="text-sm font-medium">{patient.name}</span>
-              <span className="text-xs text-[#70757a]">
+              <span className="text-xs text-(color:--c-muted)">
                 {patient.phone || 'Sin teléfono'}
                 {patient.email ? ` · ${patient.email}` : ''}
               </span>
             </button>
           ))}
           {queryText.trim().length >= 2 && !results.length && (
-            <div className="px-3 py-2 text-sm text-[#70757a]">No hay coincidencias.</div>
+            <div className="px-3 py-2 text-sm text-(color:--c-muted)">No hay coincidencias.</div>
           )}
           <button
             type="button"
-            className="flex w-full items-center gap-2 border-t border-[#dadce0] px-3 py-2 text-left text-sm text-[#1a73e8] hover:bg-[#f1f3f4]"
+            className="flex w-full items-center gap-2 border-t border-(color:--c-line) px-3 py-2 text-left text-sm text-(color:--c-accent) hover:bg-(color:--c-hover)"
             onClick={openCreate}
           >
             <UserPlus size={14} />

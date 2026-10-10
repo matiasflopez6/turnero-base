@@ -37,7 +37,7 @@ export default function PatientForm({ form, onClose, onSave, stacked = false, re
           }
         }}
       >
-        <div className="border-b border-[#dadce0] px-5 py-4 text-lg">
+        <div className="border-b border-(color:--c-line) px-5 py-4 text-lg">
           {state.id ? 'Editar paciente' : 'Nuevo paciente'}
         </div>
         <div className="grid gap-3 px-5 py-4">
@@ -78,7 +78,7 @@ export default function PatientForm({ form, onClose, onSave, stacked = false, re
           )}
           <ExtraFields entity="patient" value={state.extra} onChange={(extra) => setState({ ...state, extra })} />
         </div>
-        <div className="flex justify-end gap-2 border-t border-[#dadce0] px-5 py-3">
+        <div className="flex justify-end gap-2 border-t border-(color:--c-line) px-5 py-3">
           <button type="button" className="pill-btn" onClick={onClose}>
             Cerrar
           </button>

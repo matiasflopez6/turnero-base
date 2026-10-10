@@ -34,11 +34,11 @@ export default function ChatbotPage() {
   return (
     <div className="h-full overflow-auto p-4 sm:p-6">
       <h1 className="mb-2 text-2xl">Chatbot</h1>
-      <p className="mb-4 max-w-xl text-sm text-[#70757a]">
+      <p className="mb-4 max-w-xl text-sm text-(color:--c-muted)">
         Responde por WhatsApp con GPT usando los servicios, profesionales y horarios de la clínica. Si piden un turno, manda el link para reservar.
       </p>
       {error && <div className="mb-3 max-w-xl rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
-      {message && <div className="mb-3 max-w-xl rounded-lg bg-[#e6f4ea] px-3 py-2 text-sm text-[#0b8043]">{message}</div>}
+      {message && <div className="mb-3 max-w-xl rounded-lg bg-(color:--c-success-tint) px-3 py-2 text-sm text-(color:--c-success)">{message}</div>}
       <form
         className="max-w-xl space-y-4"
         onSubmit={async (ev) => {
@@ -120,7 +120,7 @@ export default function ChatbotPage() {
           Conectar webhook
         </button>
         {settings.chatbot_phone_number_id && (
-          <p className="text-sm text-[#70757a]">Número conectado: {settings.chatbot_phone_number_id}</p>
+          <p className="text-sm text-(color:--c-muted)">Número conectado: {settings.chatbot_phone_number_id}</p>
         )}
       </div>
     </div>

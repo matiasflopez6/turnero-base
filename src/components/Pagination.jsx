@@ -24,7 +24,7 @@ export function Pager({ page, pages, total, pageSize, onPage }) {
   const from = (page - 1) * pageSize + 1;
   const to = Math.min(total, page * pageSize);
   return (
-    <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm text-[#70757a]">
+    <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm text-(color:--c-muted)">
       <span>
         {from}–{to} de {total}
       </span>

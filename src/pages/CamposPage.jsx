@@ -37,7 +37,7 @@ export default function CamposPage() {
   return (
     <div className="h-full overflow-auto p-4 sm:p-6">
       <h1 className="text-2xl">Campos extra</h1>
-      <p className="mt-1 mb-6 max-w-3xl text-sm text-[#70757a]">
+      <p className="mt-1 mb-6 max-w-3xl text-sm text-(color:--c-muted)">
         Campos de la reserva online y de pacientes, profesionales, servicios y usuarios.
       </p>
       <div className="mb-6 flex flex-wrap gap-2">
@@ -52,7 +52,7 @@ export default function CamposPage() {
           <button
             key={id}
             type="button"
-            className="rounded-full border border-[#dadce0] bg-[#f8f9fa] px-3 py-1.5 text-sm text-[#3c4043] hover:border-[#1a73e8] hover:bg-[#e8f0fe] hover:text-[#1a73e8]"
+            className="rounded-full border border-(color:--c-line) bg-(color:--c-subtle) px-3 py-1.5 text-sm text-(color:--c-text) hover:border-(color:--c-accent) hover:bg-(color:--c-accent-tint) hover:text-(color:--c-accent)"
             onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
           >
             {label}
@@ -110,11 +110,11 @@ function BookingFields() {
   }
 
   return (
-    <section id="seccion-reserva" className="scroll-mt-24 rounded-xl border border-[#dadce0] p-4">
+    <section id="seccion-reserva" className="scroll-mt-24 rounded-xl border border-(color:--c-line) p-4">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <div className="mr-auto">
           <h2 className="text-base font-medium">Reserva online</h2>
-          <p className="text-sm text-[#70757a]">Qué completa la persona antes de confirmar el turno.</p>
+          <p className="text-sm text-(color:--c-muted)">Qué completa la persona antes de confirmar el turno.</p>
         </div>
         <button
           type="button"
@@ -138,7 +138,7 @@ function BookingFields() {
       </label>
       <div className="grid gap-2">
         {fields.map((field) => (
-          <div key={field.key} className="flex flex-wrap items-center gap-2 rounded-lg bg-[#f8f9fa] p-3">
+          <div key={field.key} className="flex flex-wrap items-center gap-2 rounded-lg bg-(color:--c-subtle) p-3">
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
@@ -149,14 +149,14 @@ function BookingFields() {
               Visible
             </label>
             <input
-              className="min-w-[140px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+              className="min-w-[140px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
               value={field.label}
               onChange={(e) => patch(field.key, { label: e.target.value })}
               onBlur={() => persist()}
             />
             {field.custom && (
               <select
-                className="rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+                className="rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
                 value={field.type}
                 onChange={(e) => patch(field.key, { type: e.target.value }, true)}
               >
@@ -176,7 +176,7 @@ function BookingFields() {
             </label>
             {field.type === 'select' && (
               <input
-                className="min-w-[160px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+                className="min-w-[160px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
                 placeholder="Opciones, separadas por coma"
                 value={Array.isArray(field.options) ? field.options.join(', ') : field.options || ''}
                 onChange={(e) => patch(field.key, { options: e.target.value })}
@@ -212,7 +212,7 @@ function EntityFields({ entity, fields, onChange, onError }) {
   }
 
   return (
-    <section id={`seccion-${entity.id}`} className="scroll-mt-24 rounded-xl border border-[#dadce0] p-4">
+    <section id={`seccion-${entity.id}`} className="scroll-mt-24 rounded-xl border border-(color:--c-line) p-4">
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <h2 className="mr-auto text-base font-medium">{entity.label}</h2>
         <button
@@ -242,7 +242,7 @@ function EntityFields({ entity, fields, onChange, onError }) {
         {fields.map((field) => (
           <FieldRow key={field.id} field={field} onChange={onChange} onError={onError} />
         ))}
-        {!fields.length && !builtins.length && <div className="text-sm text-[#70757a]">Sin campos extra.</div>}
+        {!fields.length && !builtins.length && <div className="text-sm text-(color:--c-muted)">Sin campos extra.</div>}
       </div>
     </section>
   );
@@ -252,7 +252,7 @@ function BuiltinRow({ field, onPatch }) {
   const [label, setLabel] = useState(field.label);
   useEffect(() => setLabel(field.label), [field.label]);
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-[#f8f9fa] p-3">
+    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-(color:--c-subtle) p-3">
       <label className="flex items-center gap-2 text-sm">
         <input
           type="checkbox"
@@ -263,7 +263,7 @@ function BuiltinRow({ field, onPatch }) {
         Visible
       </label>
       <input
-        className="min-w-[140px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+        className="min-w-[140px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
         value={label}
         onChange={(e) => setLabel(e.target.value)}
         onBlur={() => {
@@ -303,15 +303,15 @@ function FieldRow({ field, onChange, onError }) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-[#f8f9fa] p-3">
+    <div className="flex flex-wrap items-center gap-2 rounded-lg bg-(color:--c-subtle) p-3">
       <input
-        className="min-w-[160px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+        className="min-w-[160px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
         value={state.label}
         onChange={(e) => setState({ ...state, label: e.target.value })}
         onBlur={() => save()}
       />
       <select
-        className="rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+        className="rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
         value={state.fieldType}
         onChange={(e) => {
           const next = { ...state, fieldType: e.target.value };
@@ -337,7 +337,7 @@ function FieldRow({ field, onChange, onError }) {
       </label>
       {state.fieldType === 'select' && (
         <input
-          className="min-w-[180px] flex-1 rounded-lg border border-[#dadce0] bg-white px-3 py-2 text-sm"
+          className="min-w-[180px] flex-1 rounded-lg border border-(color:--c-line) bg-(color:--c-surface) px-3 py-2 text-sm"
           placeholder="Opciones, separadas por coma"
           value={state.options}
           onChange={(e) => setState({ ...state, options: e.target.value })}

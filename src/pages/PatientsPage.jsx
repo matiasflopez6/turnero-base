@@ -40,7 +40,7 @@ export default function PatientsPage() {
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <h1 className="mr-auto text-2xl">Pacientes</h1>
         <input
-          className="h-9 w-full min-w-0 rounded-full border border-[#dadce0] px-4 text-sm outline-none focus:border-[#1a73e8] sm:w-auto sm:min-w-[240px]"
+          className="h-9 w-full min-w-0 rounded-full border border-(color:--c-line) px-4 text-sm outline-none focus:border-(color:--c-accent) sm:w-auto sm:min-w-[240px]"
           placeholder="Buscar por nombre…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -54,10 +54,10 @@ export default function PatientsPage() {
       {error && <div className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
       <div className="grid gap-3 md:hidden">
         {rows.map((row) => (
-          <div key={row.id} className="rounded-xl border border-[#dadce0] p-4">
-            <Link className="font-medium text-[#1a73e8]" to={`/pacientes/${row.id}`}>{row.name}</Link>
-            <div className="mt-1 text-sm text-[#70757a]">DNI {row.dni || '—'} · {row.phone || 'Sin teléfono'}</div>
-            <div className="truncate text-sm text-[#70757a]">{row.email || 'Sin email'}</div>
+          <div key={row.id} className="rounded-xl border border-(color:--c-line) p-4">
+            <Link className="font-medium text-(color:--c-accent)" to={`/pacientes/${row.id}`}>{row.name}</Link>
+            <div className="mt-1 text-sm text-(color:--c-muted)">DNI {row.dni || '—'} · {row.phone || 'Sin teléfono'}</div>
+            <div className="truncate text-sm text-(color:--c-muted)">{row.email || 'Sin email'}</div>
             <div className="mt-3 flex flex-wrap gap-2">
               <Link className="pill-btn" to={`/pacientes/${row.id}`}>Historia</Link>
               <button className="pill-btn" onClick={() => setEditing(toPatientForm(row))}>Editar</button>
@@ -65,14 +65,14 @@ export default function PatientsPage() {
           </div>
         ))}
         {!rows.length && (
-          <div className="rounded-xl border border-[#dadce0] px-4 py-8 text-center text-sm text-[#70757a]">
+          <div className="rounded-xl border border-(color:--c-line) px-4 py-8 text-center text-sm text-(color:--c-muted)">
             {q.trim() ? 'No hay pacientes con ese nombre.' : 'Todavía no hay pacientes. Creá el primero.'}
           </div>
         )}
       </div>
-      <div className="hidden overflow-x-auto rounded-xl border border-[#dadce0] md:block">
+      <div className="hidden overflow-x-auto rounded-xl border border-(color:--c-line) md:block">
         <table className="w-full text-left text-sm">
-          <thead className="bg-[#f8f9fa] text-[#70757a]">
+          <thead className="bg-(color:--c-subtle) text-(color:--c-muted)">
             <tr>
               <th className="px-4 py-3 font-medium">Nombre</th>
               <th className="px-4 py-3 font-medium">DNI</th>
@@ -83,9 +83,9 @@ export default function PatientsPage() {
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr key={row.id} className="border-t border-[#dadce0]">
+              <tr key={row.id} className="border-t border-(color:--c-line)">
                 <td className="px-4 py-3 font-medium">
-                  <Link className="text-[#1a73e8] hover:underline" to={`/pacientes/${row.id}`}>
+                  <Link className="text-(color:--c-accent) hover:underline" to={`/pacientes/${row.id}`}>
                     {row.name}
                   </Link>
                 </td>
@@ -106,7 +106,7 @@ export default function PatientsPage() {
             ))}
             {!rows.length && (
               <tr>
-                <td className="px-4 py-8 text-center text-[#70757a]" colSpan={5}>
+                <td className="px-4 py-8 text-center text-(color:--c-muted)" colSpan={5}>
                   {q.trim() ? 'No hay pacientes con ese nombre.' : 'Todavía no hay pacientes. Creá el primero.'}
                 </td>
               </tr>

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { api } from '../api';
 import MiniCalendar from '../components/MiniCalendar';
 import PoweredBy from '../components/PoweredBy';
+import { ThemeToggle } from '../theme';
 import { formatTime, ymd } from '../lib/calendar';
 
 export default function PublicBookingPage({ kind }) {
@@ -78,14 +79,14 @@ export default function PublicBookingPage({ kind }) {
   if (loading) {
     return (
       <PublicShell>
-        <div className="grid min-h-full place-items-center text-[#70757a]">Cargando calendario…</div>
+        <div className="grid min-h-full place-items-center text-(color:--c-muted)">Cargando calendario…</div>
       </PublicShell>
     );
   }
   if (!calendar) {
     return (
       <PublicShell>
-        <div className="grid min-h-full place-items-center p-6 text-[#70757a]">{error || 'Calendario no disponible'}</div>
+        <div className="grid min-h-full place-items-center p-6 text-(color:--c-muted)">{error || 'Calendario no disponible'}</div>
       </PublicShell>
     );
   }
@@ -105,20 +106,20 @@ export default function PublicBookingPage({ kind }) {
     const time = formatTime(start, calendar.timezone);
     return (
       <PublicShell>
-        <div className="min-h-full bg-[#f8f9fa]">
-          <div className="border-b border-[#dadce0] bg-[#e6f4ea] px-4 py-2 text-sm text-[#0b8043]">
+        <div className="min-h-full bg-(color:--c-subtle)">
+          <div className="border-b border-(color:--c-line) bg-(color:--c-success-tint) px-4 py-2 text-sm text-(color:--c-success)">
             Reserva confirmada · {calendar.clinicName}
           </div>
           <div className="mx-auto max-w-md px-4 py-8">
-            <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-[#e6f4ea] text-2xl text-[#0b8043]">✓</div>
+            <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-(color:--c-success-tint) text-2xl text-(color:--c-success)">✓</div>
             <h1 className="mt-4 text-center text-2xl">Turno reservado</h1>
-            <p className="mt-2 text-center text-sm text-[#70757a]">Guardá estos datos. Te esperamos.</p>
-            <div className="mt-6 rounded-2xl border border-[#f9ab00] bg-[#fef7e0] p-4">
-              <div className="text-sm font-medium text-[#e37400]">Horario</div>
-              <div className="mt-1 text-lg capitalize text-[#3c4043]">{when}</div>
-              <div className="text-3xl font-medium text-[#3c4043]">{time} hs</div>
+            <p className="mt-2 text-center text-sm text-(color:--c-muted)">Guardá estos datos. Te esperamos.</p>
+            <div className="mt-6 rounded-2xl border border-(color:--c-warn-line) bg-(color:--c-warn-tint) p-4">
+              <div className="text-sm font-medium text-(color:--c-warn)">Horario</div>
+              <div className="mt-1 text-lg capitalize text-(color:--c-text)">{when}</div>
+              <div className="text-3xl font-medium text-(color:--c-text)">{time} hs</div>
             </div>
-            <div className="mt-3 divide-y divide-[#dadce0] rounded-2xl border border-[#dadce0] bg-white">
+            <div className="mt-3 divide-y divide-(color:--c-line) rounded-2xl border border-(color:--c-line) bg-(color:--c-surface)">
               <ConfirmRow label="Servicio" value={done.service?.name} />
               <ConfirmRow label="Profesional" value={done.professional?.name} />
               <ConfirmRow label="Paciente" value={done.patient?.name} />
@@ -145,8 +146,8 @@ export default function PublicBookingPage({ kind }) {
   if (step === 'datos' && selected) {
     return (
       <PublicShell>
-        <div className="min-h-full bg-white">
-          <div className="border-b border-[#dadce0] bg-[#e8f0fe] px-4 py-2 text-sm text-[#174ea6] sm:px-6">
+        <div className="min-h-full bg-(color:--c-surface)">
+          <div className="border-b border-(color:--c-line) bg-(color:--c-accent-tint) px-4 py-2 text-sm text-(color:--c-accent-strong) sm:px-6">
             Reserva online · {calendar.clinicName}
           </div>
           <div className="mx-auto max-w-md px-4 py-6 sm:px-6">
@@ -154,10 +155,10 @@ export default function PublicBookingPage({ kind }) {
               Volver al horario
             </button>
             <h1 className="text-2xl">Tus datos</h1>
-            <p className="mt-2 text-sm text-[#70757a]">
+            <p className="mt-2 text-sm text-(color:--c-muted)">
               {calendar.name} · {format(date, "EEEE d 'de' MMMM", { locale: es })} · {formatSlotLabel(selected, kind)}
             </p>
-            {calendar.bookingIntro && <p className="mt-3 text-sm text-[#3c4043]">{calendar.bookingIntro}</p>}
+            {calendar.bookingIntro && <p className="mt-3 text-sm text-(color:--c-text)">{calendar.bookingIntro}</p>}
             <form className="mt-6 space-y-3" onSubmit={book}>
               {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
               {fields.map((field) => (
@@ -199,15 +200,15 @@ export default function PublicBookingPage({ kind }) {
 
   return (
     <PublicShell>
-      <div className="min-h-full bg-white">
-      <div className="border-b border-[#dadce0] bg-[#e8f0fe] px-4 py-2 text-sm text-[#174ea6] sm:px-6">
+      <div className="min-h-full bg-(color:--c-surface)">
+      <div className="border-b border-(color:--c-line) bg-(color:--c-accent-tint) px-4 py-2 text-sm text-(color:--c-accent-strong) sm:px-6">
         Reserva online · {calendar.clinicName}
       </div>
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-6 sm:px-6 sm:py-8 lg:grid-cols-[280px_1fr] lg:gap-8">
         <div>
-          <div className="text-sm text-[#70757a]">{calendar.clinicName}</div>
+          <div className="text-sm text-(color:--c-muted)">{calendar.clinicName}</div>
           <h1 className="mt-1 text-2xl font-normal sm:text-3xl">{calendar.name}</h1>
-          <div className="mt-3 text-sm text-[#70757a]">Citas de {duration} min</div>
+          <div className="mt-3 text-sm text-(color:--c-muted)">Citas de {duration} min</div>
           {kind === 'profesional' && calendar.services?.length > 1 && (
             <label className="field mt-4">
               <span>Servicio</span>
@@ -227,7 +228,7 @@ export default function PublicBookingPage({ kind }) {
         <div>
           <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             <h2 className="text-base sm:text-lg">Seleccioná una hora para la cita</h2>
-            <div className="text-xs text-[#70757a]">({calendar.timezone})</div>
+            <div className="text-xs text-(color:--c-muted)">({calendar.timezone})</div>
           </div>
           <div className="mb-6 grid grid-cols-7 gap-1 sm:gap-2">
             {strip.map((day) => {
@@ -235,7 +236,7 @@ export default function PublicBookingPage({ kind }) {
               return (
                 <button
                   key={day.toISOString()}
-                  className={`rounded-full px-0.5 py-2 text-center sm:px-2 sm:py-3 ${active ? 'bg-[#1a73e8] text-white' : 'hover:bg-[#f1f3f4]'}`}
+                  className={`rounded-full px-0.5 py-2 text-center sm:px-2 sm:py-3 ${active ? 'bg-(color:--c-primary) text-white' : 'hover:bg-(color:--c-hover)'}`}
                   onClick={() => setDate(day)}
                 >
                   <div className="text-[11px] uppercase">{format(day, 'EEE', { locale: es }).replace('.', '')}</div>
@@ -257,10 +258,10 @@ export default function PublicBookingPage({ kind }) {
                 </button>
               );
             })}
-            {!slots.length && <div className="text-sm text-[#70757a]">No hay horarios disponibles este día.</div>}
+            {!slots.length && <div className="text-sm text-(color:--c-muted)">No hay horarios disponibles este día.</div>}
           </div>
           {selected && (
-            <div className="fixed bottom-20 left-1/2 z-20 flex w-[min(100%-2rem,24rem)] -translate-x-1/2 items-center justify-between gap-3 rounded-full border border-[#f9ab00] bg-[#fef7e0] p-2 shadow-lg">
+            <div className="fixed bottom-20 left-1/2 z-20 flex w-[min(100%-2rem,24rem)] -translate-x-1/2 items-center justify-between gap-3 rounded-full border border-(color:--c-warn-line) bg-(color:--c-warn-tint) p-2 shadow-lg">
               <span className="pl-3 text-sm font-medium">{formatSlotLabel(selected, kind)}</span>
               <button className="pill-btn primary" type="button" onClick={() => setStep('datos')}>
                 Continuar
@@ -278,8 +279,8 @@ function ConfirmRow({ label, value }) {
   if (!value) return null;
   return (
     <div className="flex items-baseline justify-between gap-4 px-4 py-3">
-      <span className="text-sm text-[#70757a]">{label}</span>
-      <span className="text-right text-sm font-medium text-[#3c4043]">{value}</span>
+      <span className="text-sm text-(color:--c-muted)">{label}</span>
+      <span className="text-right text-sm font-medium text-(color:--c-text)">{value}</span>
     </div>
   );
 }
@@ -288,6 +289,7 @@ function PublicShell({ children }) {
   return (
     <div className="flex min-h-full flex-col">
       <div className="min-h-0 flex-1">{children}</div>
+      <ThemeToggle floating />
       <PoweredBy />
     </div>
   );

@@ -75,10 +75,10 @@ export default function UsersPage() {
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <div className="mr-auto">
           <h1 className="text-2xl">Usuarios</h1>
-          <p className="text-sm text-[#70757a]">Altas de secretaría, profesionales y pacientes, con permisos por sección.</p>
+          <p className="text-sm text-(color:--c-muted)">Altas de secretaría, profesionales y pacientes, con permisos por sección.</p>
         </div>
         <input
-          className="h-9 w-full min-w-0 rounded-full border border-[#dadce0] px-4 text-sm outline-none focus:border-[#1a73e8] sm:w-auto sm:min-w-[240px]"
+          className="h-9 w-full min-w-0 rounded-full border border-(color:--c-line) px-4 text-sm outline-none focus:border-(color:--c-accent) sm:w-auto sm:min-w-[240px]"
           placeholder="Buscar por nombre…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -96,19 +96,19 @@ export default function UsersPage() {
       {error && <div className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
       <div className="grid gap-3">
         {users.map((user) => (
-          <div key={user.id} className="flex flex-col gap-3 rounded-xl border border-[#dadce0] p-4 sm:flex-row sm:items-center">
+          <div key={user.id} className="flex flex-col gap-3 rounded-xl border border-(color:--c-line) p-4 sm:flex-row sm:items-center">
             <EntityPhoto
               kind="users"
               id={user.id}
               hasPhoto={user.hasPhoto}
-              fallback={<span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#e8f0fe] text-sm font-medium text-[#1a73e8]">{user.name?.[0] || '?'}</span>}
+              fallback={<span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-(color:--c-accent-tint) text-sm font-medium text-(color:--c-accent)">{user.name?.[0] || '?'}</span>}
             />
             <div className="min-w-0 flex-1">
               <div className="font-medium">
                 {user.name}{' '}
-                <span className="text-sm font-normal text-[#70757a]">@{user.username}</span>
+                <span className="text-sm font-normal text-(color:--c-muted)">@{user.username}</span>
               </div>
-              <div className="text-sm text-[#70757a]">
+              <div className="text-sm text-(color:--c-muted)">
                 {user.email || 'Sin email'} · {ROLE_LABELS[user.role] || user.role}
                 {user.isSystem ? ' · cuenta del sistema' : ''}
                 {!user.active ? ' · desactivado' : ''}
@@ -234,7 +234,7 @@ function UserForm({ form, meta, professionals, patients, onClose, onSave }) {
           }
         }}
       >
-        <div className="border-b border-[#dadce0] px-5 py-4 text-lg">{state.id ? 'Editar usuario' : 'Nuevo usuario'}</div>
+        <div className="border-b border-(color:--c-line) px-5 py-4 text-lg">{state.id ? 'Editar usuario' : 'Nuevo usuario'}</div>
         <div className="grid gap-3 px-5 py-4">
           {error && <div className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>}
           <PhotoField kind="users" id={state.id} hasPhoto={form.hasPhoto} file={photo} onFile={setPhoto} />
@@ -328,11 +328,11 @@ function UserForm({ form, meta, professionals, patients, onClose, onSave }) {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Buscar permiso…"
             />
-            <div className="mt-2 max-h-64 space-y-3 overflow-auto rounded-lg border border-[#dadce0] p-3">
-              {groups.length === 0 && <div className="text-sm text-[#70757a]">Ningún permiso coincide.</div>}
+            <div className="mt-2 max-h-64 space-y-3 overflow-auto rounded-lg border border-(color:--c-line) p-3">
+              {groups.length === 0 && <div className="text-sm text-(color:--c-muted)">Ningún permiso coincide.</div>}
               {groups.map(([group, items]) => (
                 <div key={group}>
-                  <div className="mb-1 text-xs font-medium uppercase tracking-wide text-[#70757a]">{group}</div>
+                  <div className="mb-1 text-xs font-medium uppercase tracking-wide text-(color:--c-muted)">{group}</div>
                   <div className="grid gap-1">
                     {items.map((item) => (
                       <label key={item.key} className="flex items-center gap-2 text-sm">
@@ -363,7 +363,7 @@ function UserForm({ form, meta, professionals, patients, onClose, onSave }) {
             Activo
           </label>
         </div>
-        <div className="flex justify-end gap-2 border-t border-[#dadce0] px-5 py-4">
+        <div className="flex justify-end gap-2 border-t border-(color:--c-line) px-5 py-4">
           <button className="pill-btn" type="button" onClick={onClose}>
             Cancelar
           </button>
@@ -398,13 +398,13 @@ function RecordSearch({ label, placeholder, value, options, onChange, onSearch }
         onChange={(e) => setTerm(e.target.value)}
       />
       <input className="sr-only" tabIndex={-1} value={value || ''} required onChange={() => {}} />
-      {selected && !term && <div className="text-sm text-[#174ea6]">{selected.name}</div>}
-      <div className="max-h-40 overflow-auto rounded-lg border border-[#dadce0]">
+      {selected && !term && <div className="text-sm text-(color:--c-accent-strong)">{selected.name}</div>}
+      <div className="max-h-40 overflow-auto rounded-lg border border-(color:--c-line)">
         {shown.map((item) => (
           <button
             key={item.id}
             type="button"
-            className={`block w-full px-3 py-2 text-left text-sm hover:bg-[#f8f9fa] ${String(item.id) === String(value) ? 'bg-[#e8f0fe]' : ''}`}
+            className={`block w-full px-3 py-2 text-left text-sm hover:bg-(color:--c-subtle) ${String(item.id) === String(value) ? 'bg-(color:--c-accent-tint)' : ''}`}
             onClick={() => {
               onChange(String(item.id));
               setTerm('');
@@ -413,7 +413,7 @@ function RecordSearch({ label, placeholder, value, options, onChange, onSearch }
             {item.name}
           </button>
         ))}
-        {!shown.length && <div className="px-3 py-2 text-sm text-[#70757a]">Sin resultados</div>}
+        {!shown.length && <div className="px-3 py-2 text-sm text-(color:--c-muted)">Sin resultados</div>}
       </div>
     </div>
   );
