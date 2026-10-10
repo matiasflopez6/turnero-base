@@ -22,14 +22,22 @@ async function runSchema() {
 }
 
 async function ensureAdmin() {
-  const existing = await query('SELECT id FROM users WHERE username = $1', [config.defaultAdminUser]);
+  const existing = await query('SELECT id, password_hash FROM users WHERE username = $1', [config.defaultAdminUser]);
   if (existing.rowCount) {
+    const admin = existing.rows[0];
     await query(
       `UPDATE users
        SET role = 'admin', is_system = true, active = true, name = COALESCE(NULLIF(name, ''), 'Administrador')
        WHERE id = $1`,
-      [existing.rows[0].id]
+      [admin.id]
     );
+    // The system admin can't edit itself in the app, so DEFAULT_ADMIN_PASSWORD is the way to change it.
+    if (config.adminPasswordFromEnv && !(await bcrypt.compare(config.defaultAdminPassword, admin.password_hash || ''))) {
+      const hash = await bcrypt.hash(config.defaultAdminPassword, 10);
+      await query('UPDATE users SET password_hash = $1 WHERE id = $2', [hash, admin.id]);
+      await query('DELETE FROM sessions WHERE user_id = $1', [admin.id]);
+      console.log(`OK: contraseña de admin actualizada (${config.defaultAdminUser})`);
+    }
     console.log(`OK: admin listo (${config.defaultAdminUser})`);
     return;
   }

@@ -15,6 +15,7 @@ export const config = {
   clinicName: process.env.CLINIC_NAME || 'Clínica',
   defaultAdminUser: process.env.DEFAULT_ADMIN_USER || 'admin',
   defaultAdminPassword: process.env.DEFAULT_ADMIN_PASSWORD || 'admin123',
+  adminPasswordFromEnv: Boolean(process.env.DEFAULT_ADMIN_PASSWORD),
   seedDemo: String(process.env.SEED_DEMO || 'true').toLowerCase() !== 'false',
   nodeEnv: process.env.NODE_ENV || 'development',
   uploadDir: process.env.UPLOAD_DIR || '',
