@@ -92,7 +92,7 @@ export function buildHistoryPdf({ patient, notes, settings, images }) {
     for (let i = 0; i < pages.count; i += 1) {
       doc.switchToPage(i);
       doc.fillColor(MUTED).font('Helvetica').fontSize(8).text(
-        `Powered by ProfesIA  ·  ${i + 1} / ${pages.count}`,
+        `${i + 1} / ${pages.count}`,
         left,
         doc.page.height - 28,
         { width, align: 'center' }

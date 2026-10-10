@@ -240,9 +240,6 @@ function layout({ clinic, title, intro, rows = [], action }) {
           ${details ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">${details}</table>` : ''}
           ${button}
         </td></tr>
-        <tr><td style="background:#111111;padding:14px 16px;text-align:center;">
-          <a href="https://www.instagram.com/profesia.ia/" style="color:rgba(255,255,255,0.72);font-size:12px;text-decoration:none;">Powered by ProfesIA</a>
-        </td></tr>
       </table>
     </td></tr>
   </table>
